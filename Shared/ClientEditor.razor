@@ -1,0 +1,26 @@
+<h3>@_name</h3>
+<ul>
+    @foreach (var label in _labels)
+    {
+        <li>@label</li>
+    }
+</ul>
+@code {
+
+    [Parameter]
+    public Client? Client { get; set; }
+
+    string _name = string.Empty;
+    List<string> _labels = new List<string>();
+
+    protected override void OnParametersSet()
+    {
+        Console.WriteLine("[Child] - OnParametersSet");
+        if (Client is not null)
+        {
+            _name = Client.Name;
+            _labels = Client.Labels.Select(x=>x.Value).ToList();
+        }
+    }
+
+}

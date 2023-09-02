@@ -1,4 +1,4 @@
-namespace blazor_reinitialization_problem;
+namespace BlazorDomainObjectEditor;
 
 public class WeatherForecast
 {

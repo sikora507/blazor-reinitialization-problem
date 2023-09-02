@@ -1,0 +1,27 @@
+@page "/client"
+@page "/client/{Id}"
+@using BlazorDomainObjectEditor.Repositories
+@inject IClientRepository ClientRepository
+@attribute [RenderModeServer]
+
+<h3>Client</h3>
+<a href="/client/tomasz">Tomasz</a>
+<a href="/client/agata">Agata</a>
+@if (_client is not null)
+{
+    <ClientEditor Client="@_client"></ClientEditor>
+}
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+    private Client? _client { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        if (!string.IsNullOrWhiteSpace(Id))
+        {
+            _client = ClientRepository.GetClientById(Id);
+        }
+    }
+}

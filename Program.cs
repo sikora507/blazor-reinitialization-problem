@@ -1,9 +1,11 @@
-using blazor_reinitialization_problem;
+using BlazorDomainObjectEditor;
+using BlazorDomainObjectEditor.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorComponents();
+builder.Services.AddRazorComponents().AddServerComponents();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
 
 var app = builder.Build();
 
